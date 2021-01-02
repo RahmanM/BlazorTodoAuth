@@ -1,0 +1,13 @@
+﻿@using BlazorTodos.Shared.ViewModels
+
+<div>
+    <div>Done: @Summary?.TotalCompleted </div>
+    <div>Todo: @Summary?.TotalNotCompleted</div>
+</div>
+
+@code {
+
+    [Parameter]
+    public TodosSummaryViewModel Summary { get; set; }
+
+}

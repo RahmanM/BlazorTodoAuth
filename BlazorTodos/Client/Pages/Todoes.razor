@@ -1,0 +1,46 @@
+@page "/todoes"
+@using BlazorTodos.Shared
+@using BlazorTodos.Server.Data
+@using BlazorTodos.Client.Components
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<h1>Todoes</h1>
+
+<p><a href="Todos_Add">Add New Todo</a></p>
+
+<Spinner SpinWhile=@(todoes == null) />
+
+<TodoList Todos=@todoes OnListChanged="TodoListChangedHandler" />
+
+@code {
+    private TodoViewModel[] todoes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await PopulateTodos();
+    }
+
+    protected async Task PopulateTodos()
+    {
+        try
+        {
+            todoes = await Http.GetFromJsonAsync<TodoViewModel[]>("/api/todoes");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+    // Call back from the child component so the page can refresh its content or do whatever is needed
+    async Task TodoListChangedHandler(string message)
+    {
+        Console.WriteLine(message);
+        await PopulateTodos();
+    }
+
+}

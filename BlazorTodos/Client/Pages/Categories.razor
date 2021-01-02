@@ -1,0 +1,38 @@
+﻿@page "/categories"
+@using BlazorTodos.Shared
+@using BlazorTodos.Server.Data
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+@using BlazorTodos.Client.Components
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<h1>Categories</h1>
+
+<p><a href="Categories_Add">Add New Category</a></p>
+
+<Spinner SpinWhile=@(categories == null) />
+<CategoriesList Categories=@categories OnListChanged="OnCategoryChangedHandler" />
+
+@code {
+    private TodoCategoryViewModel[] categories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            categories = await Http.GetFromJsonAsync<TodoCategoryViewModel[]>("/api/todocategories");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+    // Call back from the child component so the page can refresh its content or do whatever is needed
+    async Task OnCategoryChangedHandler(string message)
+    {
+        await OnInitializedAsync();
+    }
+}

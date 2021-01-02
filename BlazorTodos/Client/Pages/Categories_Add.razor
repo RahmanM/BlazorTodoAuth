@@ -1,0 +1,56 @@
+﻿@page "/categories_add"
+
+@using BlazorTodos.Server.Data
+@inject HttpClient Http
+@inject NavigationManager UriHelper
+
+<h3>Add Todo Category</h3>
+
+<EditForm Model="@categoryViewModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <MatTextField Required="true"
+                      @bind-Value="@categoryViewModel.Description"
+                      HelperTextPersistent="true"
+                      HelperTextValidation="true"
+                      HelperText="Todo Category minimum 3 characters"
+                      Label="Category Description"
+                      FullWidth="true">
+
+        </MatTextField>
+    </p>
+
+    <br />
+
+    <MatButton type="submit"  Raised="true" Icon="save">Save</MatButton>
+    <MatButton type="button" Raised="true" Icon="cancel"  @onclick="@(()=> @Cancel())">Cancel</MatButton>
+
+</EditForm>
+
+@code {
+    private TodoCategoryViewModel categoryViewModel = new TodoCategoryViewModel() {Active = true };
+
+    private async Task HandleValidSubmit()
+    {
+        Console.WriteLine(categoryViewModel);
+        using var response = await Http.PostAsJsonAsync("/api/todocategories", categoryViewModel);
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorMessage = response.ReasonPhrase;
+            Console.WriteLine($"There was an error! {errorMessage}");
+            return;
+        }
+        else
+        {
+            UriHelper.NavigateTo("/categories");
+        }
+    }
+
+    private void Cancel()
+    {
+        UriHelper.NavigateTo("/categories");
+    }
+
+}
