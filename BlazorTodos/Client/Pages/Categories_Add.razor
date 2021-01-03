@@ -3,6 +3,8 @@
 @using BlazorTodos.Server.Data
 @inject HttpClient Http
 @inject NavigationManager UriHelper
+@inject IMatToaster Toaster
+
 
 <h3>Add Todo Category</h3>
 
@@ -24,13 +26,13 @@
 
     <br />
 
-    <MatButton type="submit"  Raised="true" Icon="save">Save</MatButton>
-    <MatButton type="button" Raised="true" Icon="cancel"  @onclick="@(()=> @Cancel())">Cancel</MatButton>
+    <MatButton type="submit" Raised="true" Icon="save">Save</MatButton>
+    <MatButton type="button" Raised="true" Icon="cancel" @onclick="@(()=> @Cancel())">Cancel</MatButton>
 
 </EditForm>
 
 @code {
-    private TodoCategoryViewModel categoryViewModel = new TodoCategoryViewModel() {Active = true };
+    private TodoCategoryViewModel categoryViewModel = new TodoCategoryViewModel() { Active = true };
 
     private async Task HandleValidSubmit()
     {
@@ -40,10 +42,12 @@
         {
             var errorMessage = response.ReasonPhrase;
             Console.WriteLine($"There was an error! {errorMessage}");
+            Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
             return;
         }
         else
         {
+            Toaster.Add("Record is added successfully.", MatToastType.Info);
             UriHelper.NavigateTo("/categories");
         }
     }

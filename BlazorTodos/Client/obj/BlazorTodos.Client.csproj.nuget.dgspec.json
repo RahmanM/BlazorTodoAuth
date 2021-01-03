@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj": {}
+    "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj": {}
   },
   "projects": {
-    "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj": {
+    "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj",
+        "projectUniqueName": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj",
         "projectName": "BlazorTodos.Client",
-        "projectPath": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj",
+        "projectPath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj",
         "packagesPath": "C:\\Users\\rahman\\.nuget\\packages\\",
-        "outputPath": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Client\\obj\\",
+        "outputPath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rahman\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj": {
-                "projectPath": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj"
+              "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj": {
+                "projectPath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj"
               }
             }
           }
@@ -44,10 +44,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "BlazorStrap": {
-              "target": "Package",
-              "version": "[1.5.0-preview-03, )"
-            },
             "MatBlazor": {
               "target": "Package",
               "version": "[2.8.0, )"
@@ -104,14 +100,14 @@
         }
       }
     },
-    "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj": {
+    "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj",
+        "projectUniqueName": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj",
         "projectName": "BlazorTodos.Shared",
-        "projectPath": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj",
+        "projectPath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj",
         "packagesPath": "C:\\Users\\rahman\\.nuget\\packages\\",
-        "outputPath": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Shared\\obj\\",
+        "outputPath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rahman\\AppData\\Roaming\\NuGet\\NuGet.Config",

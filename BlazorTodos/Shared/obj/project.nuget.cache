@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mJ06A/RJUa5wtBG5gsj2qAvhWYDni4g5/TnsWlbyeahg4m4DWFQiZhN/vxOPlYoAtMc4ScGJ3MNWFbYZlonCMg==",
+  "dgSpecHash": "lRtVsalZgRyzEFKZlu5DlZg7a7kDOjQlxqEG4dpxLc3J0wweHAMfxqupaz1QhYb7BUUtKk6w1VOrZRNxqSVeHw==",
   "success": true,
-  "projectFilePath": "C:\\temp\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj",
+  "projectFilePath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Shared\\BlazorTodos.Shared.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

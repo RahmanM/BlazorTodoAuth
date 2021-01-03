@@ -5,5 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>BlazorTodos.Server</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>BlazorTodoAppWithAuth - Web Deploy</NameOfLastUsedPublishProfile>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>

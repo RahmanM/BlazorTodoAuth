@@ -13,112 +13,105 @@ namespace BlazorTodos.Client.Components
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 1 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 2 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 3 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 4 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 5 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 6 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 7 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 8 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 9 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 10 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using BlazorTodos.Client;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 11 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using BlazorTodos.Client.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
-using BlazorStrap;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 13 "C:\temp\BlazorTodos\BlazorTodos\Client\_Imports.razor"
+#line 12 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
 using MatBlazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\temp\BlazorTodos\BlazorTodos\Client\Components\TodoList.razor"
+#line 1 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
 using BlazorTodos.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\temp\BlazorTodos\BlazorTodos\Client\Components\TodoList.razor"
+#line 2 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
 using BlazorTodos.Server.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\temp\BlazorTodos\BlazorTodos\Client\Components\TodoList.razor"
+#line 3 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
 using BlazorTodos.Client.Components;
 
 #line default
@@ -132,7 +125,7 @@ using BlazorTodos.Client.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 42 "C:\temp\BlazorTodos\BlazorTodos\Client\Components\TodoList.razor"
+#line 45 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
        
 
     [Parameter]
@@ -145,10 +138,19 @@ using BlazorTodos.Client.Components;
     {
         if (id > 0)
         {
-            bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+            //bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+            var confirmed = await MatDialogService.ConfirmAsync("Are you sure you want to delete the record?");
             if (confirmed)
             {
-                await Http.DeleteAsync("/api/todoes/" + id);
+                try
+                {
+                    await Http.DeleteAsync("/api/todoes/" + id);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
+                }
                 await OnListChanged.InvokeAsync("Todo is deleted.");
             }
         }
@@ -161,7 +163,16 @@ using BlazorTodos.Client.Components;
         {
 
             HttpContent httpContent = new StringContent(id.ToString());
-            await Http.PutAsync("/api/todoes/" + id, httpContent);
+
+            try
+            {
+                await Http.PutAsync("/api/todoes/" + id, httpContent);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
+            }
             await OnListChanged.InvokeAsync("Todo complete state is changed.");
         }
 
@@ -171,6 +182,8 @@ using BlazorTodos.Client.Components;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatToaster Toaster { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatDialogService MatDialogService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }

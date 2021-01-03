@@ -9,3 +9,14 @@ C:\temp\BlazorTodos\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.cspro
 C:\temp\BlazorTodos\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.dll
 C:\temp\BlazorTodos\BlazorTodos\Shared\obj\Debug\net5.0\ref\BlazorTodos.Shared.dll
 C:\temp\BlazorTodos\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.pdb
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\bin\Debug\net5.0\BlazorTodos.Shared.deps.json
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\bin\Debug\net5.0\BlazorTodos.Shared.dll
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\bin\Debug\net5.0\ref\BlazorTodos.Shared.dll
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\bin\Debug\net5.0\BlazorTodos.Shared.pdb
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.AssemblyInfoInputs.cache
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.AssemblyInfo.cs
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.csproj.CoreCompileInputs.cache
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.dll
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\ref\BlazorTodos.Shared.dll
+E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.pdb

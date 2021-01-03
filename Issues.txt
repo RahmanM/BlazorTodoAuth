@@ -1,0 +1,13 @@
+identity servery deployment issues:
+
+https://dev.to/seankilleen/solved-blazor-identityserver-500-30-error-ancm-issue-f7c
+
+
+https://stackoverflow.com/questions/56094788/identityserver4-not-working-in-production#comment100725521_56104072
+
+https://stackoverflow.com/questions/57246219/how-to-configure-key-settings-for-identityserver-in-appsettings-json-for-aspnet
+
+
+cert thumbnail
+
+B9F88AEA161F97BBBF1D450B191017B5354AA998

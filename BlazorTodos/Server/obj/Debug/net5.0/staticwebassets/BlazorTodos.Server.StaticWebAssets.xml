@@ -1,9 +1,8 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="C:\temp\BlazorTodosAuth\BlazorTodos\Client\bin\Debug\net5.0\wwwroot\" />
-  <ContentRoot BasePath="/" Path="C:\temp\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\scopedcss\bundle\" />
-  <ContentRoot BasePath="/" Path="C:\temp\BlazorTodosAuth\BlazorTodos\Client\wwwroot\" />
+  <ContentRoot BasePath="/" Path="E:\Projects\BlazorTodosAuth\BlazorTodos\Client\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="/" Path="E:\Projects\BlazorTodosAuth\BlazorTodos\Client\wwwroot\" />
   <ContentRoot BasePath="/Identity" Path="C:\Users\rahman\.nuget\packages\microsoft.aspnetcore.identity.ui\5.0.1\staticwebassets\V4\" />
-  <ContentRoot BasePath="_content/BlazorStrap" Path="C:\Users\rahman\.nuget\packages\blazorstrap\1.5.0-preview-03\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/MatBlazor" Path="C:\Users\rahman\.nuget\packages\matblazor\2.8.0\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication" Path="C:\Users\rahman\.nuget\packages\microsoft.aspnetcore.components.webassembly.authentication\5.0.0\build\..\staticwebassets\" />
 </StaticWebAssets>

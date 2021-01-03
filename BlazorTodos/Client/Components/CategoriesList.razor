@@ -2,6 +2,7 @@
 @using BlazorTodos.Server.Data
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
+@inject IMatDialogService MatDialogService
 
 @if (Categories != null)
 {
@@ -46,7 +47,8 @@ else
     {
         if (id > 0)
         {
-            bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+            //bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+            var confirmed = await MatDialogService.ConfirmAsync("Are you sure you want to delete the record?");
             if (confirmed)
             {
                 await Http.DeleteAsync("/api/todocategories/" + id);
