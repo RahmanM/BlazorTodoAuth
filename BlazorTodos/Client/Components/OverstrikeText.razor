@@ -1,0 +1,17 @@
+﻿@if (!Overstrike)
+{
+    <span>@Text</span>
+}
+else
+{
+    <del>@Text</del>
+}
+
+@code {
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public bool Overstrike { get; set; }
+}

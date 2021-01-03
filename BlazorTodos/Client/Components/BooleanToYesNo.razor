@@ -1,0 +1,14 @@
+﻿@if (Condition)
+{
+    <span>Yes</span>
+}
+else
+{
+    <span>No</span>
+}
+
+@code {
+
+    [Parameter]
+    public bool Condition { get; set; }
+}

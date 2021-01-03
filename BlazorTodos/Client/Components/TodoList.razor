@@ -22,10 +22,10 @@
             @foreach (var todo in Todos)
             {
                 <tr>
-                    <td>@todo?.Description</td>
+                    <td><OverstrikeText Overstrike=@todo.Complete Text="@todo.Description"></OverstrikeText></td>
                     <td>@todo?.Category</td>
                     <td>
-                        @(todo?.Complete == true ? "Yes" : "No")
+                        <BooleanToYesNo Condition="@todo.Complete" />
                     </td>
                     <td>
                         <a href="javascript: void(0);" @onclick="(() => deleteTodo(todo.Id))"><i class="far fa-trash-alt"></i></a> |

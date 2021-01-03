@@ -1340,3 +1340,7 @@ E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\BlazorTodos.Clie
 E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\BlazorTodos.Client.dll
 E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\ref\BlazorTodos.Client.dll
 E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\BlazorTodos.Client.pdb
+E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\RazorDeclaration\Components\OverstrikeText.razor.g.cs
+E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\Razor\Components\OverstrikeText.razor.g.cs
+E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\RazorDeclaration\Components\BooleanToYesNo.razor.g.cs
+E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\Razor\Components\BooleanToYesNo.razor.g.cs
