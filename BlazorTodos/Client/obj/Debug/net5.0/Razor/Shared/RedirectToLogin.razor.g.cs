@@ -94,6 +94,13 @@ using MatBlazor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
+using BlazorAnimate;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Shared\RedirectToLogin.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 

@@ -97,6 +97,13 @@ using MatBlazor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
+using BlazorAnimate;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
 using BlazorTodos.Shared;
 
@@ -125,7 +132,7 @@ using BlazorTodos.Client.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
+#line 53 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
        
 
     [Parameter]
@@ -145,6 +152,7 @@ using BlazorTodos.Client.Components;
                 try
                 {
                     await Http.DeleteAsync("/api/todoes/" + id);
+                    Toaster.Add("Record deleted successfully.", MatToastType.Info);
                 }
                 catch (Exception ex)
                 {
@@ -167,12 +175,14 @@ using BlazorTodos.Client.Components;
             try
             {
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
+                Toaster.Add("Record updated successfully.", MatToastType.Info);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
             }
+
             await OnListChanged.InvokeAsync("Todo complete state is changed.");
         }
 

@@ -97,6 +97,13 @@ using MatBlazor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
+using BlazorAnimate;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
 using BlazorTodos.Shared;
 
@@ -118,7 +125,7 @@ using BlazorTodos.Server.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
+#line 44 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
        
 
     [Parameter]
@@ -135,8 +142,18 @@ using BlazorTodos.Server.Data;
             var confirmed = await MatDialogService.ConfirmAsync("Are you sure you want to delete the record?");
             if (confirmed)
             {
-                await Http.DeleteAsync("/api/todocategories/" + id);
-                await OnListChanged.InvokeAsync("Category is deleted.");
+
+                try
+                {
+                     await Http.DeleteAsync("/api/todocategories/" + id);
+                    Toaster.Add("Record deleted successfully.", MatToastType.Info);
+                    await OnListChanged.InvokeAsync("Category is deleted.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
+                }
             }
         }
     }
@@ -145,6 +162,7 @@ using BlazorTodos.Server.Data;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatToaster Toaster { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatDialogService MatDialogService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "OWjDKcckkRC8DHTg0xjxgAjmQ29I7a6Pg0tJR98xPMM/ch0gILXFM5aeuH6Yx7o9FK4ImTLPIBXbg/x2v7W0Sg==",
+  "dgSpecHash": "9OAkuc79XzZsJVkhhKfWOVmVXd2PrMqMmHC2ymxWcRbn4ky2L4Sv3xz7xkZip3cRHu6eYFA9HuDENKdwyqXXxQ==",
   "success": true,
   "projectFilePath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Server\\BlazorTodos.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rahman\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
+    "C:\\Users\\rahman\\.nuget\\packages\\blazoranimate\\3.0.0\\blazoranimate.3.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\identitymodel\\4.4.0\\identitymodel.4.4.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\identityserver4\\4.1.0\\identityserver4.4.1.0.nupkg.sha512",
@@ -70,6 +71,7 @@
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.7.1\\microsoft.identitymodel.tokens.6.7.1.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.jsinterop\\5.0.0\\microsoft.jsinterop.5.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.jsinterop.webassembly\\5.0.0\\microsoft.jsinterop.webassembly.5.0.0.nupkg.sha512",
+    "C:\\Users\\rahman\\.nuget\\packages\\minver\\2.0.0\\minver.2.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",

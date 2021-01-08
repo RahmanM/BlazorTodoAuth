@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "xSX/gAr3NA4e9ClTBQXJsymwwbNX5X2yGBHtA+fiYtwluKQuLgHpTyj3NOQRExtwq8BQItyWMhrw4oumNUl43w==",
+  "dgSpecHash": "RUlheqYcewNAoH+n8d/RwcT/fFqyOMWLCPC4IVKxTUQk1E5lWHFAs30mUr3mVo5qYhzgHUGt3M7VJ/5S+qlG2A==",
   "success": true,
   "projectFilePath": "E:\\Projects\\BlazorTodosAuth\\BlazorTodos\\Client\\BlazorTodos.Client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\rahman\\.nuget\\packages\\blazoranimate\\3.0.0\\blazoranimate.3.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\matblazor\\2.8.0\\matblazor.2.8.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.0\\microsoft.aspnetcore.authorization.5.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.0\\microsoft.aspnetcore.components.5.0.0.nupkg.sha512",
@@ -32,6 +33,7 @@
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.jsinterop\\5.0.0\\microsoft.jsinterop.5.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.jsinterop.webassembly\\5.0.0\\microsoft.jsinterop.webassembly.5.0.0.nupkg.sha512",
+    "C:\\Users\\rahman\\.nuget\\packages\\minver\\2.0.0\\minver.2.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\system.io.pipelines\\5.0.0\\system.io.pipelines.5.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\system.net.http.json\\5.0.0\\system.net.http.json.5.0.0.nupkg.sha512",
     "C:\\Users\\rahman\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.1\\microsoft.netcore.app.runtime.browser-wasm.5.0.1.nupkg.sha512"

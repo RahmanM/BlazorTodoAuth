@@ -334,6 +334,22 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
+      "BlazorAnimate/3.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "5.0.0",
+          "Microsoft.AspNetCore.Components.Web": "5.0.0",
+          "MinVer": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/BlazorAnimate.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/BlazorAnimate.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -1015,6 +1031,7 @@
           "lib/net5.0/Microsoft.JSInterop.WebAssembly.dll": {}
         }
       },
+      "MinVer/2.0.0": {},
       "Newtonsoft.Json/12.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -1186,6 +1203,7 @@
       "System.Text.Encodings.Web/4.7.0": {},
       "BlazorTodos.Client/1.0.0": {
         "dependencies": {
+          "BlazorAnimate": "3.0.0",
           "BlazorTodos.Shared": "1.0.0",
           "MatBlazor": "2.8.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "5.0.0",
@@ -2885,6 +2903,13 @@
       "path": "automapper/10.0.0",
       "hashPath": "automapper.10.0.0.nupkg.sha512"
     },
+    "BlazorAnimate/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IUX/IFdEKiQ5ncZ5/iVhaZynWL2dA04lH9ieza9JhBj/jJH8f2NwM6OqdJFm7RfkFdbkIH8t2Bxd/laZS2EXWQ==",
+      "path": "blazoranimate/3.0.0",
+      "hashPath": "blazoranimate.3.0.0.nupkg.sha512"
+    },
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
@@ -3339,6 +3364,13 @@
       "sha512": "sha512-f2uQYLAZvHso78R65wlKVAk0NqedwbO6Kc2gvSccHmnGoliNwx+wtw3ofY+AqLEnqzE8mCS0XXn5p8kuPDprTQ==",
       "path": "microsoft.jsinterop.webassembly/5.0.0",
       "hashPath": "microsoft.jsinterop.webassembly.5.0.0.nupkg.sha512"
+    },
+    "MinVer/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1U1JIwD47a/m9S1LXdDm+fByP3LYR9hTeFfi1MlizScXF4e4yUpZvunEyQAovVfi4qYaUlVzIbk08OXFfz3FfQ==",
+      "path": "minver/2.0.0",
+      "hashPath": "minver.2.0.0.nupkg.sha512"
     },
     "Newtonsoft.Json/12.0.2": {
       "type": "package",

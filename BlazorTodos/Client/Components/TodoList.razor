@@ -7,20 +7,23 @@
 @inject IMatToaster Toaster
 
 
-@if (Todos != null)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Done?</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var todo in Todos)
-            {
+<Animate Animation="Animations.ZoomIn" Duration="TimeSpan.FromSeconds(0.5)" Delay="TimeSpan.FromSeconds(0.3)">
+
+    @if (Todos != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Done?</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var todo in Todos)
+                {
                 <tr>
                     <td><OverstrikeText Overstrike=@todo.Complete Text="@todo.Description"></OverstrikeText></td>
                     <td>@todo?.Category</td>
@@ -32,15 +35,20 @@
                         <a href="javascript: void(0);" @onclick="(() => flipComplete(todo.Id))"><i class="fas fa-check"></i></a>
                     </td>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div>No Todoes to show!</div>
-}
 
+                }
+
+
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <div>No Todoes to show!</div>
+    }
+
+</Animate>
 
 @code {
 
@@ -61,6 +69,7 @@ else
                 try
                 {
                     await Http.DeleteAsync("/api/todoes/" + id);
+                    Toaster.Add("Record deleted successfully.", MatToastType.Info);
                 }
                 catch (Exception ex)
                 {
@@ -83,12 +92,14 @@ else
             try
             {
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
+                Toaster.Add("Record updated successfully.", MatToastType.Info);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
             }
+
             await OnListChanged.InvokeAsync("Todo complete state is changed.");
         }
 
