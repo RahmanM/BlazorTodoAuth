@@ -153,6 +153,9 @@ using BlazorTodos.Client.Components;
                 {
                     await Http.DeleteAsync("/api/todoes/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
+                    // Apply Javascript interop animation by running Javascript function to add a class dynamically
+                    await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
+
                 }
                 catch (Exception ex)
                 {
@@ -176,6 +179,8 @@ using BlazorTodos.Client.Components;
             {
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
                 Toaster.Add("Record updated successfully.", MatToastType.Info);
+                // Apply Javascript interop animation by running Javascript function to add a class dynamically
+                await JsRuntime.InvokeVoidAsync("todoCompletedAnimation", id.ToString());
             }
             catch (Exception ex)
             {

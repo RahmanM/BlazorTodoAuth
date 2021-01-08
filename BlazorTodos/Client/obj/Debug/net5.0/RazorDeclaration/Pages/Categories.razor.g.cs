@@ -173,6 +173,7 @@ using Microsoft.AspNetCore.Authorization;
     // Call back from the child component so the page can refresh its content or do whatever is needed
     async Task OnCategoryChangedHandler(string message)
     {
+        await Task.Delay(1000);
         await OnInitializedAsync();
     }
 

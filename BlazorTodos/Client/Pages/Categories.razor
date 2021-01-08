@@ -8,7 +8,7 @@
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 
-<h1 >Categories</h1>
+<h1 class="cssanimation fadeIn">Categories</h1>
 
 <p><a href="Categories_Add">Add New Category</a></p>
 
@@ -33,6 +33,7 @@
     // Call back from the child component so the page can refresh its content or do whatever is needed
     async Task OnCategoryChangedHandler(string message)
     {
+        await Task.Delay(1000);
         await OnInitializedAsync();
     }
 }

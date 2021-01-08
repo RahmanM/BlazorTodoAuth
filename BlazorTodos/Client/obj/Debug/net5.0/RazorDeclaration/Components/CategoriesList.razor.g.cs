@@ -147,6 +147,9 @@ using BlazorTodos.Server.Data;
                 {
                      await Http.DeleteAsync("/api/todocategories/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
+                    // Apply Javascript interop animation by running Javascript function to add a class dynamically
+                    await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
+
                     await OnListChanged.InvokeAsync("Category is deleted.");
                 }
                 catch (Exception ex)

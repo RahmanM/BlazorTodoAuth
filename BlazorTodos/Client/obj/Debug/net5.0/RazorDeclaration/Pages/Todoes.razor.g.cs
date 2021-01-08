@@ -178,7 +178,8 @@ using Microsoft.AspNetCore.Authorization;
     // Call back from the child component so the page can refresh its content or do whatever is needed
     async Task TodoListChangedHandler(string message)
     {
-        Console.WriteLine(message);
+        await Task.Delay(1000);
+        //Console.WriteLine(message);
         await PopulateTodos();
     }
 

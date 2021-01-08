@@ -24,7 +24,7 @@
 
                 @foreach (var todo in Todos)
                 {
-                <tr>
+                <tr id="@todo.Id">
                     <td><OverstrikeText Overstrike=@todo.Complete Text="@todo.Description"></OverstrikeText></td>
                     <td>@todo?.Category</td>
                     <td>
@@ -70,6 +70,9 @@
                 {
                     await Http.DeleteAsync("/api/todoes/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
+                    // Apply Javascript interop animation by running Javascript function to add a class dynamically
+                    await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
+
                 }
                 catch (Exception ex)
                 {
@@ -93,6 +96,8 @@
             {
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
                 Toaster.Add("Record updated successfully.", MatToastType.Info);
+                // Apply Javascript interop animation by running Javascript function to add a class dynamically
+                await JsRuntime.InvokeVoidAsync("todoCompletedAnimation", id.ToString());
             }
             catch (Exception ex)
             {
