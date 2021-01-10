@@ -104,6 +104,13 @@ using BlazorAnimate;
 #line hidden
 #nullable disable
 #nullable restore
+#line 14 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
+using BlazorTodos.Client.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
 using BlazorTodos.Shared;
 
@@ -132,7 +139,7 @@ using BlazorTodos.Client.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
+#line 54 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
        
 
     [Parameter]
@@ -154,8 +161,8 @@ using BlazorTodos.Client.Components;
                     await Http.DeleteAsync("/api/todoes/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
                     // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                    await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
-
+                    //await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
+                    await AnimationUtil.HangAndDropLeft(id.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -180,7 +187,8 @@ using BlazorTodos.Client.Components;
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
                 Toaster.Add("Record updated successfully.", MatToastType.Info);
                 // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                await JsRuntime.InvokeVoidAsync("todoCompletedAnimation", id.ToString());
+                //await JsRuntime.InvokeVoidAsync("fadeInRightAnimation", id.ToString());
+                await AnimationUtil.FadeInRight(id.ToString());
             }
             catch (Exception ex)
             {
@@ -197,6 +205,7 @@ using BlazorTodos.Client.Components;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAnimationUtil AnimationUtil { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatToaster Toaster { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatDialogService MatDialogService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }

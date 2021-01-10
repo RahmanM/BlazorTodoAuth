@@ -5,6 +5,7 @@
 @inject IJSRuntime JsRuntime
 @inject IMatDialogService MatDialogService
 @inject IMatToaster Toaster
+@inject IAnimationUtil AnimationUtil
 
 
 <Animate Animation="Animations.ZoomIn" Duration="TimeSpan.FromSeconds(0.5)" Delay="TimeSpan.FromSeconds(0.3)">
@@ -24,17 +25,17 @@
 
                 @foreach (var todo in Todos)
                 {
-                <tr id="@todo.Id">
-                    <td><OverstrikeText Overstrike=@todo.Complete Text="@todo.Description"></OverstrikeText></td>
-                    <td>@todo?.Category</td>
-                    <td>
-                        <BooleanToYesNo Condition="@todo.Complete" />
-                    </td>
-                    <td>
-                        <a href="javascript: void(0);" @onclick="(() => deleteTodo(todo.Id))"><i class="far fa-trash-alt"></i></a> |
-                        <a href="javascript: void(0);" @onclick="(() => flipComplete(todo.Id))"><i class="fas fa-check"></i></a>
-                    </td>
-                </tr>
+                    <tr id="@todo.Id">
+                        <td><OverstrikeText Overstrike=@todo.Complete Text="@todo.Description"></OverstrikeText></td>
+                        <td>@todo?.Category</td>
+                        <td>
+                            <BooleanToYesNo Condition="@todo.Complete" />
+                        </td>
+                        <td>
+                            <a href="javascript: void(0);" @onclick="(() => deleteTodo(todo.Id))"><i class="far fa-trash-alt"></i></a> |
+                            <a href="javascript: void(0);" @onclick="(() => flipComplete(todo.Id))"><i class="fas fa-check"></i></a>
+                        </td>
+                    </tr>
 
                 }
 
@@ -71,8 +72,8 @@
                     await Http.DeleteAsync("/api/todoes/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
                     // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                    await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
-
+                    //await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
+                    await AnimationUtil.HangAndDropLeft(id.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -97,7 +98,8 @@
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
                 Toaster.Add("Record updated successfully.", MatToastType.Info);
                 // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                await JsRuntime.InvokeVoidAsync("todoCompletedAnimation", id.ToString());
+                //await JsRuntime.InvokeVoidAsync("fadeInRightAnimation", id.ToString());
+                await AnimationUtil.FadeInRight(id.ToString());
             }
             catch (Exception ex)
             {

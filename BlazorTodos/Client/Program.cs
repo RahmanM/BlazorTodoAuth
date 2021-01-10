@@ -1,4 +1,5 @@
 using BlazorAnimate;
+using BlazorTodos.Client.Services;
 using MatBlazor;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -39,17 +40,7 @@ namespace BlazorTodos.Client
                 config.VisibleStateDuration = 3000;
             });
 
-            //builder.Services.Configure<AnimateOptions>("fade-down", options =>
-            //{
-            //    options.Animation = Animations.FadeDown;
-            //    options.Duration = TimeSpan.FromMilliseconds(300);
-            //});
-
-            //builder.Services.Configure<AnimateOptions>("flip-left", options =>
-            //{
-            //    options.Animation = Animations.FlipLeft;
-            //    options.Duration = TimeSpan.FromMilliseconds(300);
-            //});
+            builder.Services.AddSingleton<IAnimationUtil, AnimationUtil>();
 
             await builder.Build().RunAsync();
         }

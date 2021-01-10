@@ -104,6 +104,13 @@ using BlazorAnimate;
 #line hidden
 #nullable disable
 #nullable restore
+#line 14 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
+using BlazorTodos.Client.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
 using BlazorTodos.Shared;
 
@@ -125,7 +132,7 @@ using BlazorTodos.Server.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
+#line 46 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
        
 
     [Parameter]
@@ -145,10 +152,11 @@ using BlazorTodos.Server.Data;
 
                 try
                 {
-                     await Http.DeleteAsync("/api/todocategories/" + id);
+                    await Http.DeleteAsync("/api/todocategories/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
                     // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                    await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
+                    //await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
+                    await AnimationUtil.HangAndDropLeft(id.ToString());
 
                     await OnListChanged.InvokeAsync("Category is deleted.");
                 }
@@ -165,6 +173,7 @@ using BlazorTodos.Server.Data;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAnimationUtil AnimationUtil { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatToaster Toaster { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatDialogService MatDialogService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }

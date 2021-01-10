@@ -1,18 +1,19 @@
 ﻿
-window.todoCompletedAnimation = (id) => {
+window.applyAnnimation = (id, annimationName) => {
     var element = document.getElementById(id);
-    element.className += "cssanimation zoomIn";
+    element.className += "cssanimation " + annimationName;
 
     setTimeout(function () {
-        element.classList.remove('cssanimation', 'zoomIn');
+        element.classList.remove('cssanimation', annimationName);
     }, 2000)
 };
 
-window.deleteAnimation = (id) => {
+window.applyAnnimation = (id, annimationName, durationMiliSeconds) => {
+    var duration = durationMiliSeconds ? durationMiliSeconds : 2000;
     var element = document.getElementById(id);
-    element.className += "cssanimation blurOut";
+    element.className += "cssanimation " + annimationName;
 
-    //setTimeout(function () {
-    //    element.classList.remove('cssanimation', 'zoomIn');
-    //}, 2000)
+    setTimeout(function () {
+        element.classList.remove('cssanimation', annimationName);
+    }, duration)
 };

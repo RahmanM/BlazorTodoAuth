@@ -104,6 +104,13 @@ using BlazorAnimate;
 #line hidden
 #nullable disable
 #nullable restore
+#line 14 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\_Imports.razor"
+using BlazorTodos.Client.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Categories.razor"
 using BlazorTodos.Shared;
 
