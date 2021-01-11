@@ -16,11 +16,16 @@
                       @bind-Value="@todoViewModel.Description"
                       HelperTextPersistent="true"
                       HelperTextValidation="true"
-                      HelperText="Todo Description minimum 5 characters"
+                      HelperText="Todo Description minimum 5 characters and maximum 100 characters."
                       Label="Todo Description"
+                      @oninput="@(e =>  @todoViewModel.Description = e.Value.ToString())"
+                      maxlength="@MAX_TODO_LENGTH"
                       FullWidth="true">
-
         </MatTextField>
+    </p>
+
+    <p>
+        <BlazorTodos.Client.Components.InputMaxLenghtNotifier Text="@todoViewModel.Description" MaxLenght="@MAX_TODO_LENGTH" />
     </p>
 
     <div>
@@ -53,6 +58,8 @@
 
 @code {
     private TodoViewModel todoViewModel = new TodoViewModel();
+    private string InputMaxLenghtMessage { get; set; } = "";
+    private int MAX_TODO_LENGTH { get; set; } = 100;
 
     private async Task HandleValidSubmit()
     {
@@ -83,4 +90,5 @@
     {
         categories = await Http.GetFromJsonAsync<List<TodoCategoryViewModel>>("/api/todocategories");
     }
+
 }

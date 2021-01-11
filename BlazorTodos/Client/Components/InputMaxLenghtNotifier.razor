@@ -1,0 +1,36 @@
+﻿@inject IJSRuntime JsRuntime
+
+<span style="margin-left:17px; color:darkblue" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg">@Message</span>
+
+@code {
+
+    private string _Text;
+
+    [Parameter]
+    public string Text
+    {
+        get { return _Text; }
+        set
+        {
+            _Text = value;
+            HandleTextChange(value);
+        }
+    }
+
+    [Parameter]
+    public int MaxLenght { get; set; }
+
+    private string Message { get; set; }
+
+    private void HandleTextChange(string text)
+    {
+        if (!string.IsNullOrWhiteSpace(text) && MaxLenght > 0)
+        {
+            //if (text.Length > MaxLenght) return;
+            var remaining = MaxLenght - Text.Length;
+            if (remaining == 0) return;
+            Message = $"Total {remaining} of {MaxLenght} charaters is remaining.";
+        }
+    }
+
+}

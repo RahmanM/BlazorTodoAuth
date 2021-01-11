@@ -1347,3 +1347,5 @@ E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\Razor\Components
 E:\Projects\BlazorTodosAuth\BlazorTodos\Client\bin\Debug\net5.0\wwwroot\_framework\BlazorAnimate.dll.gz
 E:\Projects\BlazorTodosAuth\BlazorTodos\Client\bin\Debug\net5.0\wwwroot\_framework\BlazorAnimate.dll
 E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\build-gz\x8NDLuW4.gz
+E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\RazorDeclaration\Components\InputMaxLenghtNotifier.razor.g.cs
+E:\Projects\BlazorTodosAuth\BlazorTodos\Client\obj\Debug\net5.0\Razor\Components\InputMaxLenghtNotifier.razor.g.cs

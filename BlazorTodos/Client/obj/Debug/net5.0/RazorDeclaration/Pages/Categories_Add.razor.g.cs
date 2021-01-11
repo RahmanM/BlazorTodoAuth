@@ -126,33 +126,35 @@ using BlazorTodos.Server.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Categories_Add.razor"
-       
-    private TodoCategoryViewModel categoryViewModel = new TodoCategoryViewModel() { Active = true };
+#line 40 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Categories_Add.razor"
+           
+        private TodoCategoryViewModel categoryViewModel = new TodoCategoryViewModel() { Active = true };
+        private int MAX_Description_LENGTH { get; set; } = 50;
 
-    private async Task HandleValidSubmit()
-    {
-        Console.WriteLine(categoryViewModel);
-        using var response = await Http.PostAsJsonAsync("/api/todocategories", categoryViewModel);
-        if (!response.IsSuccessStatusCode)
+        private async Task HandleValidSubmit()
         {
-            var errorMessage = response.ReasonPhrase;
-            Console.WriteLine($"There was an error! {errorMessage}");
-            Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
-            return;
+            Console.WriteLine(categoryViewModel);
+            using var response = await Http.PostAsJsonAsync("/api/todocategories", categoryViewModel);
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorMessage = response.ReasonPhrase;
+                Console.WriteLine($"There was an error! {errorMessage}");
+                Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
+                return;
+            }
+            else
+            {
+                Toaster.Add("Record is added successfully.", MatToastType.Info);
+                UriHelper.NavigateTo("/categories");
+            }
         }
-        else
+
+        private void Cancel()
         {
-            Toaster.Add("Record is added successfully.", MatToastType.Info);
             UriHelper.NavigateTo("/categories");
         }
-    }
 
-    private void Cancel()
-    {
-        UriHelper.NavigateTo("/categories");
-    }
-
+    
 
 #line default
 #line hidden

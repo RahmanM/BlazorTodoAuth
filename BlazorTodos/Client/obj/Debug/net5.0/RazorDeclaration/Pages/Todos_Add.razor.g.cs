@@ -126,9 +126,11 @@ using BlazorTodos.Server.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todos_Add.razor"
+#line 59 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todos_Add.razor"
        
     private TodoViewModel todoViewModel = new TodoViewModel();
+    private string InputMaxLenghtMessage { get; set; } = "";
+    private int MAX_TODO_LENGTH { get; set; } = 100;
 
     private async Task HandleValidSubmit()
     {
@@ -159,6 +161,7 @@ using BlazorTodos.Server.Data;
     {
         categories = await Http.GetFromJsonAsync<List<TodoCategoryViewModel>>("/api/todocategories");
     }
+
 
 #line default
 #line hidden

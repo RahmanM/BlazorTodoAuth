@@ -6,55 +6,62 @@
 @inject IMatToaster Toaster
 
 
-<h3>Add Todo Category</h3>
+    <h3>Add Todo Category</h3>
 
-<EditForm Model="@categoryViewModel" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <EditForm Model="@categoryViewModel" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <p>
-        <MatTextField Required="true"
-                      @bind-Value="@categoryViewModel.Description"
-                      HelperTextPersistent="true"
-                      HelperTextValidation="true"
-                      HelperText="Todo Category minimum 3 characters"
-                      Label="Category Description"
-                      FullWidth="true">
+        <p>
+            <MatTextField Required="true"
+                          @bind-Value="@categoryViewModel.Description"
+                          HelperTextPersistent="true"
+                          HelperTextValidation="true"
+                          HelperText="Todo Category minimum 3 characters"
+                          Label="Category Description"
+                          maxlength="@MAX_Description_LENGTH"
+                          @oninput="@(e =>  @categoryViewModel.Description = e.Value.ToString())"
+                          FullWidth="true">
 
-        </MatTextField>
-    </p>
+            </MatTextField>
+        </p>
 
-    <br />
+        <p>
+            <BlazorTodos.Client.Components.InputMaxLenghtNotifier Text="@categoryViewModel.Description" MaxLenght="@MAX_Description_LENGTH" />
+        </p>
 
-    <MatButton type="submit" Raised="true" Icon="save">Save</MatButton>
-    <MatButton type="button" Raised="true" Icon="cancel" @onclick="@(()=> @Cancel())">Cancel</MatButton>
+        <br />
 
-</EditForm>
+        <MatButton type="submit" Raised="true" Icon="save">Save</MatButton>
+        <MatButton type="button" Raised="true" Icon="cancel" @onclick="@(()=> @Cancel())">Cancel</MatButton>
 
-@code {
-    private TodoCategoryViewModel categoryViewModel = new TodoCategoryViewModel() { Active = true };
+    </EditForm>
 
-    private async Task HandleValidSubmit()
-    {
-        Console.WriteLine(categoryViewModel);
-        using var response = await Http.PostAsJsonAsync("/api/todocategories", categoryViewModel);
-        if (!response.IsSuccessStatusCode)
+    @code {
+        private TodoCategoryViewModel categoryViewModel = new TodoCategoryViewModel() { Active = true };
+        private int MAX_Description_LENGTH { get; set; } = 50;
+
+        private async Task HandleValidSubmit()
         {
-            var errorMessage = response.ReasonPhrase;
-            Console.WriteLine($"There was an error! {errorMessage}");
-            Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
-            return;
+            Console.WriteLine(categoryViewModel);
+            using var response = await Http.PostAsJsonAsync("/api/todocategories", categoryViewModel);
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorMessage = response.ReasonPhrase;
+                Console.WriteLine($"There was an error! {errorMessage}");
+                Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
+                return;
+            }
+            else
+            {
+                Toaster.Add("Record is added successfully.", MatToastType.Info);
+                UriHelper.NavigateTo("/categories");
+            }
         }
-        else
+
+        private void Cancel()
         {
-            Toaster.Add("Record is added successfully.", MatToastType.Info);
             UriHelper.NavigateTo("/categories");
         }
-    }
 
-    private void Cancel()
-    {
-        UriHelper.NavigateTo("/categories");
     }
-
-}
