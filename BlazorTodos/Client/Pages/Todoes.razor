@@ -1,5 +1,4 @@
 @page "/todoes"
-@using BlazorTodos.Shared
 @using BlazorTodos.Server.Data
 @using BlazorTodos.Client.Components
 @inject HttpClient Http
@@ -14,10 +13,10 @@
 
 <Spinner SpinWhile=@(todoes == null) />
 
-<TodoList Todos=@todoes OnListChanged="TodoListChangedHandler" />
+<TodoList Todos=@todoes OnListChanged="TodoListChangedHandler" OnFilterChanged="FilterHandler" />
 
 @code {
-    private TodoViewModel[] todoes;
+    private List<TodoViewModel> todoes { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -28,7 +27,7 @@
     {
         try
         {
-            todoes = await Http.GetFromJsonAsync<TodoViewModel[]>("/api/todoes");
+            todoes = await Http.GetFromJsonAsync<List<TodoViewModel>>("/api/todoes");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -42,6 +41,23 @@
         await Task.Delay(1000);
         //Console.WriteLine(message);
         await PopulateTodos();
+    }
+
+    // Call back from the child component so the page can filter its content or do whatever is needed
+    async Task FilterHandler(string filter)
+    {
+        await Task.Delay(10);
+
+        try
+        {
+            var result = await Http.GetFromJsonAsync<List<TodoViewModel>>("/api/todoes");
+            todoes = result.Where(t => t.Description.ToLowerInvariant().Contains(filter.ToLowerInvariant())).ToList();
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
     }
 
 }

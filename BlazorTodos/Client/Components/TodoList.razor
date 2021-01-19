@@ -8,6 +8,23 @@
 @inject IAnimationUtil AnimationUtil
 
 
+<div>
+    <p>
+
+        <MatTextField @bind-Value="@Filter"
+                      Dense="true"
+                      Label="Filter Todos"
+                      Icon="search"
+                      Outlined="true"
+                      OnKeyUp="@OnEnterKeyPressed"
+                      OnFocusOut="@FilterTodos">
+        </MatTextField>
+
+    </p>
+</div>
+
+
+
 <Animate Animation="Animations.ZoomIn" Duration="TimeSpan.FromSeconds(0.5)" Delay="TimeSpan.FromSeconds(0.3)">
 
     @if (Todos != null)
@@ -49,15 +66,21 @@
         <div>No Todoes to show!</div>
     }
 
+
 </Animate>
 
 @code {
 
     [Parameter]
-    public TodoViewModel[] Todos { get; set; }
+    public List<TodoViewModel> Todos { get; set; }
 
     [Parameter]
     public EventCallback<string> OnListChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnFilterChanged { get; set; }
+
+    private string Filter { get; set; }
 
     async Task deleteTodo(int id)
     {
@@ -71,8 +94,6 @@
                 {
                     await Http.DeleteAsync("/api/todoes/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
-                    // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                    //await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
                     await AnimationUtil.HangAndDropLeft(id.ToString());
                 }
                 catch (Exception ex)
@@ -97,8 +118,6 @@
             {
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
                 Toaster.Add("Record updated successfully.", MatToastType.Info);
-                // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                //await JsRuntime.InvokeVoidAsync("fadeInRightAnimation", id.ToString());
                 await AnimationUtil.FadeInRight(id.ToString());
             }
             catch (Exception ex)
@@ -112,4 +131,17 @@
 
     }
 
+    async Task FilterTodos()
+    {
+        if (Filter == null) return;
+        await OnFilterChanged.InvokeAsync(Filter);
+    }
+
+    async Task OnEnterKeyPressed(KeyboardEventArgs args)
+    {
+        if(args.Key == "Enter")
+        {
+            await FilterTodos();
+        }
+    }
 }

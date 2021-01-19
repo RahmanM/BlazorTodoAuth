@@ -13,7 +13,7 @@
 <p><a href="Categories_Add">Add New Category</a></p>
 
 <Spinner SpinWhile=@(categories == null) />
-<CategoriesList Categories=@categories OnListChanged="OnCategoryChangedHandler" />
+<CategoriesList Categories=@categories OnListChanged="OnCategoryChangedHandler" OnFilterChanged="FilterHandler" />
 
 @code {
     private TodoCategoryViewModel[] categories;
@@ -35,5 +35,22 @@
     {
         await Task.Delay(1000);
         await OnInitializedAsync();
+    }
+
+    // Call back from the child component so the page can filter its content or do whatever is needed
+    async Task FilterHandler(string filter)
+    {
+        await Task.Delay(10);
+
+        try
+        {
+            var result = await Http.GetFromJsonAsync<TodoCategoryViewModel[]>("/api/todocategories");
+            categories = result.Where(t => t.Description.ToLowerInvariant().Contains(filter.ToLowerInvariant())).ToArray();
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
     }
 }

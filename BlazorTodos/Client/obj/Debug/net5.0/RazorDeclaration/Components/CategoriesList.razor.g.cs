@@ -132,7 +132,7 @@ using BlazorTodos.Server.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
+#line 62 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\CategoriesList.razor"
        
 
     [Parameter]
@@ -166,6 +166,26 @@ using BlazorTodos.Server.Data;
                     Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
                 }
             }
+        }
+    }
+
+    private string Filter { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnFilterChanged { get; set; }
+
+
+    async Task FilterList()
+    {
+        if (Filter == null) return;
+        await OnFilterChanged.InvokeAsync(Filter);
+    }
+
+    async Task OnEnterKeyPressed(KeyboardEventArgs args)
+    {
+        if (args.Key == "Enter")
+        {
+            await FilterList();
         }
     }
 

@@ -46,4 +46,20 @@ and
 
 https://dev.to/seankilleen/solved-blazor-identityserver-500-30-error-ancm-issue-f7c
 
-
+# Features
+- Custom components
+- 3rd party controls
+- Authentication using IdentityServer
+- Component communications
+- Custom spinner
+- Text overstrike component
+- Boolean to Text component
+- Text max lenght notifier component
+- CSS Isolation by adding component.razor.css it will apply that css to that component.
+- Web API
+- REST API call sample
+- Error handling and notifications
+- Alerts
+- Custom animation using JS Interops
+- Deploying to Azure
+- 

@@ -139,14 +139,19 @@ using BlazorTodos.Client.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
+#line 72 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
        
 
     [Parameter]
-    public TodoViewModel[] Todos { get; set; }
+    public List<TodoViewModel> Todos { get; set; }
 
     [Parameter]
     public EventCallback<string> OnListChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnFilterChanged { get; set; }
+
+    private string Filter { get; set; }
 
     async Task deleteTodo(int id)
     {
@@ -160,8 +165,6 @@ using BlazorTodos.Client.Components;
                 {
                     await Http.DeleteAsync("/api/todoes/" + id);
                     Toaster.Add("Record deleted successfully.", MatToastType.Info);
-                    // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                    //await JsRuntime.InvokeVoidAsync("deleteAnimation", id.ToString());
                     await AnimationUtil.HangAndDropLeft(id.ToString());
                 }
                 catch (Exception ex)
@@ -186,8 +189,6 @@ using BlazorTodos.Client.Components;
             {
                 await Http.PutAsync("/api/todoes/" + id, httpContent);
                 Toaster.Add("Record updated successfully.", MatToastType.Info);
-                // Apply Javascript interop animation by running Javascript function to add a class dynamically
-                //await JsRuntime.InvokeVoidAsync("fadeInRightAnimation", id.ToString());
                 await AnimationUtil.FadeInRight(id.ToString());
             }
             catch (Exception ex)
@@ -201,6 +202,19 @@ using BlazorTodos.Client.Components;
 
     }
 
+    async Task FilterTodos()
+    {
+        if (Filter == null) return;
+        await OnFilterChanged.InvokeAsync(Filter);
+    }
+
+    async Task OnEnterKeyPressed(KeyboardEventArgs args)
+    {
+        if(args.Key == "Enter")
+        {
+            await FilterTodos();
+        }
+    }
 
 #line default
 #line hidden

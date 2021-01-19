@@ -6,6 +6,22 @@
 @inject IMatToaster Toaster
 @inject IAnimationUtil AnimationUtil
 
+<div>
+    <p>
+
+        <MatTextField @bind-Value="@Filter"
+                      Dense="true"
+                      Label="Filter Categories"
+                      Icon="search"
+                      Outlined="true"
+                      OnKeyUp="@OnEnterKeyPressed"
+                      OnFocusOut="@FilterList">
+        </MatTextField>
+
+    </p>
+</div>
+
+
 
 <Animate Animation="Animations.ZoomIn" Duration="TimeSpan.FromSeconds(0.5)" Delay="TimeSpan.FromSeconds(0.3)">
 
@@ -76,6 +92,26 @@
                     Toaster.Add("There was error while saving the record. The error has been logged. Please try again.", MatToastType.Danger);
                 }
             }
+        }
+    }
+
+    private string Filter { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnFilterChanged { get; set; }
+
+
+    async Task FilterList()
+    {
+        if (Filter == null) return;
+        await OnFilterChanged.InvokeAsync(Filter);
+    }
+
+    async Task OnEnterKeyPressed(KeyboardEventArgs args)
+    {
+        if (args.Key == "Enter")
+        {
+            await FilterList();
         }
     }
 

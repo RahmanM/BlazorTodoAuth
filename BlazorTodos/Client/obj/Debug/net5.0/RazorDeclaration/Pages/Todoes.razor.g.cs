@@ -112,41 +112,34 @@ using BlazorTodos.Client.Services;
 #nullable disable
 #nullable restore
 #line 2 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
-using BlazorTodos.Shared;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
 using BlazorTodos.Server.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
+#line 3 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
 using BlazorTodos.Client.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
+#line 6 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
+#line 7 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
+#line 8 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
            [Authorize]
 
 #line default
@@ -161,9 +154,9 @@ using Microsoft.AspNetCore.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 19 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
+#line 18 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Pages\Todoes.razor"
        
-    private TodoViewModel[] todoes;
+    private List<TodoViewModel> todoes { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -174,7 +167,7 @@ using Microsoft.AspNetCore.Authorization;
     {
         try
         {
-            todoes = await Http.GetFromJsonAsync<TodoViewModel[]>("/api/todoes");
+            todoes = await Http.GetFromJsonAsync<List<TodoViewModel>>("/api/todoes");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -188,6 +181,23 @@ using Microsoft.AspNetCore.Authorization;
         await Task.Delay(1000);
         //Console.WriteLine(message);
         await PopulateTodos();
+    }
+
+    // Call back from the child component so the page can filter its content or do whatever is needed
+    async Task FilterHandler(string filter)
+    {
+        await Task.Delay(10);
+
+        try
+        {
+            var result = await Http.GetFromJsonAsync<List<TodoViewModel>>("/api/todoes");
+            todoes = result.Where(t => t.Description.ToLowerInvariant().Contains(filter.ToLowerInvariant())).ToList();
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
     }
 
 

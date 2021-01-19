@@ -184,6 +184,23 @@ using Microsoft.AspNetCore.Authorization;
         await OnInitializedAsync();
     }
 
+    // Call back from the child component so the page can filter its content or do whatever is needed
+    async Task FilterHandler(string filter)
+    {
+        await Task.Delay(10);
+
+        try
+        {
+            var result = await Http.GetFromJsonAsync<TodoCategoryViewModel[]>("/api/todocategories");
+            categories = result.Where(t => t.Description.ToLowerInvariant().Contains(filter.ToLowerInvariant())).ToArray();
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+    }
+
 #line default
 #line hidden
 #nullable disable
