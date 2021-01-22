@@ -6,6 +6,10 @@
 	font-weight: lighter;
 	font-style: oblique;
 }
+/* /Components/StarFeedback.razor.rz.scp.css */
+.feedback[b-b586g4kebn] {
+    color: green;
+}
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-j5hwo68ct7] {
     position: relative;

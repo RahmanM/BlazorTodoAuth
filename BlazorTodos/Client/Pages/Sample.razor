@@ -1,0 +1,19 @@
+﻿@page "/sample"
+
+<h1>Sample with feedback already submitted!</h1>
+
+<BlazorTodos.Client.Components.StarFeedback TotalStarsToDraw="5" UniqueId="star1" SubmittedStars="4" OnReviewSubmitted=OnReviewSubmittedHandler />
+
+<h1>Sample with feedback NOT submitted!</h1>
+
+<BlazorTodos.Client.Components.StarFeedback TotalStarsToDraw="5" UniqueId="star2"  OnReviewSubmitted=OnReviewSubmittedHandler />
+
+@code {
+    // ((e)=> OnReviewSubmittedHandler(e))
+
+    void OnReviewSubmittedHandler(int stars)
+    {
+        Console.WriteLine(stars);
+    }
+
+}

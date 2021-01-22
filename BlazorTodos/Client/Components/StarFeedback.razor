@@ -1,0 +1,197 @@
+﻿@inject IAnimationUtil AnimationUtil
+
+
+@if (StarCounterList != null)
+{
+    @foreach (var item in StarCounterList)
+    {
+        var elementId = item.Id;
+        <span style="color:gold">
+            <i value="@item.Star"
+               id="@elementId"
+               @onmouseover="(() => OnMouseOver(elementId, item.Star))"
+               @onmouseout="(() => OnMouseLeave(elementId, item.Star))"
+               @onclick="(() => OnReadyToSubmit(elementId, item.Star))"
+               class="fas fa-star fa-2x"></i>
+        </span>
+    }
+
+    <br />
+    <br />
+
+    if (ReadyToSubmit)
+    {
+        <input type="submit" name="ready-to-submit" value="Submit Review" @onclick="OnReviewSubmit" />
+        <input type="button" name="cancel-submit" value="Cancel" @onclick="CancelSubmit" />
+    }
+}
+
+
+
+@code {
+
+    private StarIdHelper _StarIdHelper;
+
+    /// <summary>
+    /// Input to identify how many starts to draw
+    /// </summary>
+    [Parameter]
+    public int TotalStarsToDraw { get; set; }
+
+    /// <summary>
+    /// Call back to subscribers once the user has submitted the review
+    /// </summary>
+    [Parameter]
+    public EventCallback<int> OnReviewSubmitted { get; set; }
+
+    [Parameter]
+    public int SubmittedStars { get; set; } = 0;
+
+    /// <summary>
+    /// Unique Id of the feedback component so we can draw multiple instances in the same page if needed
+    /// </summary>
+    [Parameter]
+    public string UniqueId { get; set; }
+
+    /// <summary>
+    /// A local object that holds the reference to stars that needs to be drawn
+    /// </summary>
+    private record StarCounter(string Id, int Star);
+
+    /// <summary>
+    /// List of Stars to be drawn
+    /// </summary>
+    private List<StarCounter> StarCounterList { get; set; } = null;
+
+    private bool ReadyToSubmit { get; set; }
+
+    private int CurrentStar { get; set; }
+
+    /// <summary>
+    /// This is to draw the feedback stars and apply styling etc
+    /// </summary>
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _StarIdHelper = new StarIdHelper(this.UniqueId);
+
+        StarCounterList = new List<StarCounter>();
+
+        @for (int ctr = 1; ctr <= TotalStarsToDraw; ctr++)
+        {
+            StarCounterList.Add(new StarCounter(Id: _StarIdHelper.GetId(ctr), Star: ctr));
+        }
+    }
+
+    /// <summary>
+    /// This is once all the drawing done, now we need applt user's feedback if there is a value
+    /// </summary>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            if (SubmittedStars > 0)
+            {
+                for (int i = SubmittedStars; i >= 1; i--)
+                {
+                    await AnimationUtil.AddCssClass(_StarIdHelper.GetIdByStar(i).ToString(), "feedback");
+                }
+            }
+        }
+    }
+
+    async Task OnMouseOver(string id, int star)
+    {
+        if (ReadyToSubmit) return; // don't reset the stars if user want to submit it
+
+        for (int i = star; i >= 1; i--)
+        {
+            await AnimationUtil.Effect3DNoDuration(_StarIdHelper.GetIdByStar(i));
+        }
+    }
+
+    async Task OnMouseLeave(string id, int star)
+    {
+        if (ReadyToSubmit) return; // don't reset the stars if user want to submit it
+
+        for (int i = star; i >= 1; i--)
+        {
+            await AnimationUtil.RemoveAnimation(_StarIdHelper.GetIdByStar(i), "effect3d");
+        }
+    }
+
+    void OnReadyToSubmit(string id, int star)
+    {
+        ReadyToSubmit = true;
+        CurrentStar = star;
+    }
+
+    async Task OnReviewSubmit()
+    {
+        // If user want to resubmit something that they have already given feedback then we reset first then apply based on new selection
+        //if (SubmittedStars > 0)
+        //{
+
+        for (int i = TotalStarsToDraw; i >= 1; i--)
+        {
+            await AnimationUtil.RemoveAnimation(_StarIdHelper.GetIdByStar(i), "effect3d");
+            await AnimationUtil.RemoveCssClass(_StarIdHelper.GetIdByStar(i), "feedback");
+        }
+
+        SubmittedStars = CurrentStar;
+        //}
+
+        for (int i = CurrentStar; i >= 1; i--)
+        {
+            await AnimationUtil.AddCssClass(_StarIdHelper.GetIdByStar(i), "feedback");
+        }
+
+        await OnReviewSubmitted.InvokeAsync(CurrentStar);
+
+        ReadyToSubmit = false;
+
+    }
+
+    async Task CancelSubmit()
+    {
+        for (int i = TotalStarsToDraw; i >= 1; i--)
+        {
+            await AnimationUtil.RemoveAnimation(_StarIdHelper.GetIdByStar(i), "effect3d");
+            await AnimationUtil.RemoveCssClass(_StarIdHelper.GetIdByStar(i), "feedback");
+        }
+
+        ReadyToSubmit = false;
+        CurrentStar = 0;
+
+        // So the user has submitted the review, they are trying to submit again but then cancel
+        // we reset it back to what orginal review was submitted
+        if (SubmittedStars > 0)
+        {
+            await OnAfterRenderAsync(true);
+        }
+    }
+
+    class StarIdHelper
+    {
+        string _ElementId;
+
+        public StarIdHelper(string elementId)
+        {
+            _ElementId = elementId;
+        }
+
+        public string GetIdByStar(int star)
+        {
+            return $"{_ElementId}-{star}";
+        }
+
+        public string GetId(int starId)
+        {
+            return $"{_ElementId}-{starId}";
+        }
+    }
+
+}

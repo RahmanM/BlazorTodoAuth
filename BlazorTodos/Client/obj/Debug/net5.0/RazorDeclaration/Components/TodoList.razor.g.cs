@@ -139,7 +139,7 @@ using BlazorTodos.Client.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 72 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
+#line 71 "E:\Projects\BlazorTodosAuth\BlazorTodos\Client\Components\TodoList.razor"
        
 
     [Parameter]

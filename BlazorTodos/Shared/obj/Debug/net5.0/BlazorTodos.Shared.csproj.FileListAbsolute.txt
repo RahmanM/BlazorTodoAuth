@@ -20,4 +20,3 @@ E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shar
 E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.dll
 E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\ref\BlazorTodos.Shared.dll
 E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.pdb
-E:\Projects\BlazorTodosAuth\BlazorTodos\Shared\obj\Debug\net5.0\BlazorTodos.Shared.csprojAssemblyReference.cache

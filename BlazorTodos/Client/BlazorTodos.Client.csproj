@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <None Remove="Components\InputMaxLenghtNotifier.razor.css" />
+    <None Remove="Components\StarFeedback.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Components\InputMaxLenghtNotifier.razor.css" />
+    <Content Include="Components\StarFeedback.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

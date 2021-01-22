@@ -7,6 +7,16 @@ namespace BlazorTodos.Client.Services
     {
         Task FadeInRight(string elementId);
         Task HangAndDropLeft(string elementId);
+
+        Task Effect3D(string elementId);
+
+        Task Effect3DNoDuration(string elementId);
+
+        Task RemoveAnimation(string elementId, string animation);
+
+        Task AddCssClass(string elementId, string cssClassName);
+
+        Task RemoveCssClass(string elementId, string cssClassName);
     }
 
     /// <summary>
@@ -25,6 +35,21 @@ namespace BlazorTodos.Client.Services
 
         public IJSRuntime JSRuntime { get; }
 
+        public async Task AddCssClass(string elementId, string cssClassName)
+        {
+            await JSRuntime.InvokeVoidAsync("addCssClass", elementId, cssClassName);
+        }
+
+        public async Task Effect3D(string elementId)
+        {
+            await JSRuntime.InvokeVoidAsync("applyAnnimation", elementId, "effect3d");
+        }
+
+        public async Task Effect3DNoDuration(string elementId)
+        {
+            await JSRuntime.InvokeVoidAsync("applyAnnimationNoDuration", elementId, "effect3d");
+        }
+
         /// <summary>
         /// Apply fadeInRight animation
         /// </summary>
@@ -41,6 +66,16 @@ namespace BlazorTodos.Client.Services
         public async Task HangAndDropLeft(string elementId)
         {
             await JSRuntime.InvokeVoidAsync("applyAnnimation", elementId, "hangAndDropLeft");
+        }
+
+        public async Task RemoveAnimation(string elementId, string animation)
+        {
+            await JSRuntime.InvokeVoidAsync("removeAnimation", elementId, animation);
+        }
+
+        public async Task RemoveCssClass(string elementId, string cssClassName)
+        {
+            await JSRuntime.InvokeVoidAsync("removeCssClass", elementId, cssClassName);
         }
     }
 }
