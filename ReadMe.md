@@ -1,3 +1,24 @@
+
+# Features
+- .Net 5.0
+- Custom components
+- 3rd party controls
+- Authentication using IdentityServer
+- Component communications
+- Custom spinner
+- Text overstrike component
+- Boolean to Text component
+- Text max lenght notifier component
+- CSS Isolation by adding component.razor.css it will apply that css to that component.
+- Web API
+- REST API call sample
+- Error handling and notifications
+- Alerts
+- Custom animation using JS Interops
+- Deploying to Azure
+- 
+
+
 # Issues of deploying the Identity Server To Azure
 
 - Need to have a self signed certificate
@@ -45,21 +66,3 @@ https://stackoverflow.com/questions/57246219/how-to-configure-key-settings-for-i
 and 
 
 https://dev.to/seankilleen/solved-blazor-identityserver-500-30-error-ancm-issue-f7c
-
-# Features
-- Custom components
-- 3rd party controls
-- Authentication using IdentityServer
-- Component communications
-- Custom spinner
-- Text overstrike component
-- Boolean to Text component
-- Text max lenght notifier component
-- CSS Isolation by adding component.razor.css it will apply that css to that component.
-- Web API
-- REST API call sample
-- Error handling and notifications
-- Alerts
-- Custom animation using JS Interops
-- Deploying to Azure
-- 
